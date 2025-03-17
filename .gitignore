@@ -179,3 +179,10 @@ external/**
 !external/.gitkeep
 ktem_app_data/*
 !ktem_app_data/.gitkeep
+
+notebooks/*.csv
+notebooks/*.json
+notebooks/*.txt
+notebooks/*.png
+notebooks/*.jpg
+data/misc/** */
