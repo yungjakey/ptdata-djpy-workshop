@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# TODO: Update this to work with windows
+
 set -e
 
 echo "📦 Setting up reproducible Python environment..."
