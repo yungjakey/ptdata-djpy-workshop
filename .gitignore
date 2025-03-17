@@ -185,4 +185,4 @@ notebooks/*.json
 notebooks/*.txt
 notebooks/*.png
 notebooks/*.jpg
-data/misc/** */
+data/misc/*
