@@ -1,15 +1,20 @@
 {
     "recommendations": [
         "ms-python.python",
-        "ms-toolsai.jupyter",
         "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
         "ms-toolsai.jupyter-renderers",
         "ms-toolsai.jupyter-keymap",
+        "ms-vscode.powershell",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode-remote.remote-ssh",
+        "ms-vscode-remote.remote-ssh-edit",
+        "ms-vscode-remote.remote-wsl",
+        "ms-vscode-remote.remote-wsl-edit",
         "github.copilot",
         "github.copilot-chat",
         "ms-azuretools.vscode-docker",
         "yzhang.markdown-all-in-one",
-        "charliermarsh.ruff",
-        "mikestead.dotenv"
+        "charliermarsh.ruff"
     ]
 }

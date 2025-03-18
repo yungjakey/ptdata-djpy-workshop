@@ -13,10 +13,14 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.eol": "\n",
+    // Formatting settings
+    "ruff.enable": true,
+    "ruff.configuration": "${workspaceFolder}/.config/ruff.toml",
+    "ruff.importStrategy": "fromEnvironment",
+    "ruff.organizeImports": true,
     // Python settings
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": false,
     "python.languageServer": "Pylance",
+    "python.envFile": "${workspaceFolder}/.config/.fabric/.env",
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.autoImportCompletions": true,
@@ -29,12 +33,18 @@
     },
     // "python.defaultInterpreterPath": "${env:USERPROFILE}\\AppData\\Local\\Continuum\\anaconda3\\envs\\djpyworkshop\\python.exe",
     // Jupyter settings (updated)
-    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "notebook.formatOnSave.enabled": true,
+    "[jupyter]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        }
+    },
     "jupyter.askForKernelRestart": false,
-    // "jupyter.defaultKernelName": "python3"  // Deprecated
     "jupyter.interactiveWindow.creationMode": "perFile", // Modern setting
-    // Python environment
-    "python.envFile": "${workspaceFolder}/.env",
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
     // Terminal settings
     "terminal.integrated.gpuAcceleration": "auto",
     "terminal.integrated.profiles.windows": {
@@ -53,5 +63,5 @@
         }
     },
     "terminal.integrated.defaultProfile.windows": "conda-djpy",
-    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.defaultProfile.osx": "zsh"
 }
