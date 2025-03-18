@@ -26,40 +26,10 @@ if [ "$PYTHON_INSTALLED" = false ]; then
 
     # Use pyenv on macOS
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        if ! command -v pyenv &>/dev/null; then
-            echo "❌ pyenv is not installed. Installing pyenv..."
-            brew install pyenv
-            echo 'eval "$(pyenv init --path)"' >>~/.zprofile
-            eval "$(pyenv init --path)"
-        fi
-
-        echo "🐍 Installing Python 3.12.1 via pyenv..."
-        pyenv install -s 3.12.1
-        pyenv local 3.12.1
+        # ...existing code...
     # For Linux
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        echo "Installing Python dependencies..."
-        sudo apt-get update
-        sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \
-            libreadline-dev libsqlite3-dev curl llvm libncurses5-dev libncursesw5-dev \
-            xz-utils tk-dev libffi-dev liblzma-dev python-openssl
-
-        if ! command -v pyenv &>/dev/null; then
-            echo "Installing pyenv..."
-            curl https://pyenv.run | bash
-
-            # Add pyenv to path
-            echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >>~/.bashrc
-            echo 'eval "$(pyenv init --path)"' >>~/.bashrc
-            echo 'eval "$(pyenv virtualenv-init -)"' >>~/.bashrc
-
-            export PATH="$HOME/.pyenv/bin:$PATH"
-            eval "$(pyenv init --path)"
-        fi
-
-        echo "Installing Python 3.12.1 via pyenv..."
-        pyenv install -s 3.12.1
-        pyenv local 3.12.1
+        # ...existing code...
     fi
 
     echo "✅ Python 3.12.1 installed successfully"
@@ -97,6 +67,8 @@ if ! command -v conda &>/dev/null; then
     fi
 
     echo "✅ Miniconda installed successfully"
+    echo "🔄 Please close and reopen your terminal, then run this script again."
+    exit 0
 else
     echo "✅ Conda already installed: $(conda --version)"
 fi
@@ -107,37 +79,11 @@ conda env create -f environment.yml -n djpyworkshop --force
 
 # Activate conda environment
 echo "🚀 Activating conda environment..."
+source $(conda info --base)/etc/profile.d/conda.sh
 conda activate djpyworkshop
-
-# Install poetry if not already installed
-if ! command -v poetry &>/dev/null; then
-    echo "📜 Installing poetry..."
-    curl -sSL https://install.python-poetry.org | python3 -
-
-    # Add Poetry to PATH if needed
-    if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-        export PATH="$HOME/.local/bin:$PATH"
-
-        if [[ "$SHELL" == */zsh ]]; then
-            echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.zshrc
-        else
-            echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.bashrc
-        fi
-    fi
-else
-    echo "✅ Poetry already installed: $(poetry --version)"
-fi
-
-# Configure poetry to create virtual envs in the project directory
-echo "Configuring poetry..."
-poetry config virtualenvs.in-project true
-
-# Install project dependencies using poetry
-echo "📚 Installing project dependencies with poetry..."
-poetry install
 
 # Install spaCy model
 echo "🔤 Installing spaCy German model..."
-poetry run python -m spacy download de_core_news_lg
+python -m spacy download de_core_news_lg
 
 echo "✅ Environment setup complete! Activate with: conda activate djpyworkshop"

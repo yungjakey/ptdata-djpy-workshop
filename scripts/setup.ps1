@@ -19,7 +19,8 @@ try {
         $pythonInstalled = $true
         Write-Host "✅ Python 3.12 already installed" -ForegroundColor Green
     }
-} catch {
+}
+catch {
     Write-Host "❌ Python 3.12 is not installed" -ForegroundColor Yellow
 }
 
@@ -55,8 +56,9 @@ try {
         $condaInstalled = $true
         Write-Host "✅ Conda already installed: $condaVersion" -ForegroundColor Green
     }
-} catch {
-    WriteHost "❌ Conda is not installed" -ForegroundColor Yellow
+}
+catch {
+    Write-Host "❌ Conda is not installed" -ForegroundColor Yellow
 }
 
 if (-not $condaInstalled) {
@@ -81,6 +83,8 @@ if (-not $condaInstalled) {
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
     Write-Host "✅ Miniconda installed successfully" -ForegroundColor Green
+    Write-Host "🔄 Please close and reopen PowerShell, then run this script again." -ForegroundColor Yellow
+    exit
 }
 
 # Create conda environment
@@ -91,38 +95,8 @@ conda env create -f environment.yml -n djpyworkshop --force
 Write-Host "🚀 Activating conda environment..." -ForegroundColor Cyan
 conda activate djpyworkshop
 
-# Check if poetry is installed
-$poetryInstalled = $false
-try {
-    $poetryVersion = (poetry --version) 2>&1
-    if ($poetryVersion -match "Poetry") {
-        $poetryInstalled = $true
-        Write-Host "✅ Poetry already installed: $poetryVersion" -ForegroundColor Green
-    }
-} catch {
-    # Poetry not installed or not in PATH
-}
-
-if (-not $poetryInstalled) {
-    Write-Host "📜 Installing poetry..." -ForegroundColor Yellow
-    (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
-}
-
-# Add Poetry to PATH if it's not already there
-$poetryPath = Join-Path $env:APPDATA "Python\Scripts"
-if (-not ($env:Path -like "*$poetryPath*")) {
-    $env:Path += ";$poetryPath"
-}
-
-# Configure poetry to create virtual envs in the project directory
-poetry config virtualenvs.in-project true
-
-# Install project dependencies using poetry
-Write-Host "📚 Installing project dependencies with poetry..." -ForegroundColor Cyan
-poetry install
-
 # Install spaCy model
 Write-Host "🔤 Installing spaCy German model..." -ForegroundColor Cyan
-poetry run python -m spacy download de_core_news_lg
+python -m spacy download de_core_news_lg
 
 Write-Host "✅ Environment setup complete! Activate with: conda activate djpyworkshop" -ForegroundColor Green

@@ -4,8 +4,27 @@
 
 ## 📚 Prerequisites
 - No programming experience required
-- Installation of Python 3.12+ and Miniconda (instructions provided)
+- Git (installation instructions below)
+- Python 3.12+ and Miniconda (instructions provided)
 - Helpful: Basic knowledge of spreadsheets (Excel/Google Sheets)
+
+### Installing Git
+Git is required to download some of the tools used in this workshop.
+
+**Windows:**
+1. Download the installer from [Git for Windows](https://git-scm.com/download/win)
+2. Run the installer with default options
+3. Verify installation by opening Command Prompt or PowerShell and typing: `git --version`
+
+**macOS:**
+1. If you don't have Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+2. Install Git: `brew install git`
+3. Verify installation: `git --version`
+
+**Linux:**
+- Debian/Ubuntu: `sudo apt update && sudo apt install git`
+- Fedora/RHEL: `sudo dnf install git`
+- Verify installation: `git --version`
 
 ## 🗂 Course Structure
 
@@ -51,20 +70,28 @@ This project includes a Dev Container configuration for Visual Studio Code, whic
 For those not using the Dev Container, the following installation instructions can be used for setting up the environment.
 
 #### Setup scripts
-TODO: Add info about setup scripts
+The project includes setup scripts to automate the installation process:
+
+- **Windows**: Run `scripts/setup.ps1` in PowerShell (with Administrator privileges)
+- **macOS/Linux**: Run `scripts/setup.sh` in Terminal
+
+These scripts will install Python 3.12, Miniconda, create a conda environment, and install required packages.
+
+#### Additional tools
+To install additional tools like Fabric:
+
+- **Windows**: Run `scripts/tools.ps1` in PowerShell
+- **macOS/Linux**: Run `scripts/tools.sh` in Terminal
+
+These tools enhance the data journalism workflow with specialized capabilities.
 
 #### Conda Environment
+If you already set up everything, and want to reactivate your environment, run
 
 ```bash
-# Create the environment
-conda env create -f environment.yml
-
 # Activate the environment
 conda activate djpyworkshop
 ```
-
-#### Additional tools
-TODO: add info about installation of additional tooling
 
 ### VS Code Settings (.vscode folder)
 This project includes customized VS Code settings to enhance your development experience:
