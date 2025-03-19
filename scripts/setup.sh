@@ -86,4 +86,68 @@ conda activate djpyworkshop
 echo "🔤 Installing spaCy German model..."
 python -m spacy download de_core_news_lg
 
+# Check if Fabric is already installed
+if ! command -v fabric &>/dev/null; then
+    echo "🧠 Installing Fabric AI framework..."
+
+    # Create a temporary directory for downloads
+    TEMP_DIR=$(mktemp -d)
+
+    # Determine OS and architecture
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        if [[ $(uname -m) == "arm64" ]]; then
+            # M1/M2 Mac (arm64)
+            FABRIC_URL="https://github.com/danielmiessler/fabric/releases/latest/download/fabric-darwin-arm64"
+            FABRIC_BIN="fabric-darwin-arm64"
+        else
+            # Intel Mac (amd64)
+            FABRIC_URL="https://github.com/danielmiessler/fabric/releases/latest/download/fabric-darwin-amd64"
+            FABRIC_BIN="fabric-darwin-amd64"
+        fi
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux
+        if [[ $(uname -m) == "aarch64" ]]; then
+            # ARM64 Linux
+            FABRIC_URL="https://github.com/danielmiessler/fabric/releases/latest/download/fabric-linux-arm64"
+            FABRIC_BIN="fabric-linux-arm64"
+        else
+            # AMD64 Linux
+            FABRIC_URL="https://github.com/danielmiessler/fabric/releases/latest/download/fabric-linux-amd64"
+            FABRIC_BIN="fabric-linux-amd64"
+        fi
+    fi
+
+    # Download the appropriate Fabric binary
+    echo "Downloading Fabric binary..."
+    curl -L -o "$TEMP_DIR/fabric" $FABRIC_URL
+
+    # Make it executable
+    chmod +x "$TEMP_DIR/fabric"
+
+    # Move to a directory in PATH
+    INSTALL_DIR="$HOME/.local/bin"
+    mkdir -p "$INSTALL_DIR"
+    mv "$TEMP_DIR/fabric" "$INSTALL_DIR/fabric"
+
+    # Add to PATH if it's not already there
+    if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
+        echo "Adding $INSTALL_DIR to PATH"
+        if [[ "$SHELL" == */zsh ]]; then
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.zshrc
+        else
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >>~/.bashrc
+        fi
+        export PATH="$INSTALL_DIR:$PATH"
+    fi
+
+    echo "✅ Fabric installed successfully"
+
+    # Initial setup
+    echo "🔧 Running Fabric setup..."
+    fabric --setup
+else
+    echo "✅ Fabric already installed: $(fabric --version)"
+fi
+
 echo "✅ Environment setup complete! Activate with: conda activate djpyworkshop"
