@@ -22,13 +22,13 @@ RUN curl -L https://github.com/danielmiessler/fabric/releases/latest/download/fa
     && chmod +x /usr/local/bin/fabric && chown vscode:vscode /usr/local/bin/fabric
 
 # Install Miniconda
-RUN wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -m).sh -O /tmp/miniconda.sh \
-    && bash /tmp/miniconda.sh -b -p /opt/conda \
-    && rm /tmp/miniconda.sh
+RUN wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -m).sh -O /../tmpminiconda.sh \
+    && bash /../tmpminiconda.sh -b -p /opt/conda \
+    && rm /../tmpminiconda.sh
 
 # Create a conda environment
-COPY environment.yml /tmp/environment.yml
-RUN conda env create -f /tmp/environment.yml -n ${CONDA_ENV_NAME} \
+COPY environment.yml /../tmpenvironment.yml
+RUN conda env create -f /../tmpenvironment.yml -n ${CONDA_ENV_NAME} \
     && conda clean -afy \
     && conda init bash \
     && echo "conda activate ${CONDA_ENV_NAME}" >> /etc/bash.bashrc \

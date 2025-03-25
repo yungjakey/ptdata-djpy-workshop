@@ -175,9 +175,9 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 **/.DS_Store
-tmp/**
-!tmp/.gitkeep
-ktem_app_data/*
-!ktem_app_data/.gitkeep
+../tmp**
+!../tmp.gitkeep
+ktem_app_../data*
+!ktem_app_../data.gitkeep
 
-data/misc/*
+../datamisc/*
