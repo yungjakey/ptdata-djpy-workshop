@@ -47,6 +47,11 @@
     "jupyter.interactiveWindow.creationMode": "perFile",
     "jupyter.notebookFileRoot": "${workspaceFolder}",
     "jupyter.defaultKernelName": "djpyworkshop",
+    "jupyter.pythonExportMethod": "nbconvert",
+    // Enhanced Jupyter settings
+    "jupyter.disableJupyterAutoStart": false,
+    "jupyter.alwaysTrustNotebooks": true,
+    "jupyter.enableNativeInteractiveWindow": true,
     // Terminal settings
     "terminal.integrated.gpuAcceleration": "auto",
     "terminal.integrated.profiles.windows": {
@@ -60,7 +65,7 @@
             "args": [
                 "-NoExit",
                 "-Command",
-                "conda activate djpyworkshop || conda env create -f .\\environment.yml -n djpyworkshop && conda activate djpyworkshop"
+                "if (!(Test-Path .\\setup-jupyter.ps1)) { Write-Host 'Creating setup script...' -ForegroundColor Yellow; Set-Content -Path .\\setup-jupyter.ps1 -Value 'conda env create -f .\\environment.yml -n djpyworkshop 2>$null; conda activate djpyworkshop; pip install jupyter notebook ipykernel; jupyter notebook --generate-config; python -m ipykernel install --user --name=djpyworkshop --display-name=\"Python (djpyworkshop)\"; jupyter notebook' }; & .\\setup-jupyter.ps1"
             ]
         }
     },
@@ -76,7 +81,7 @@
             "args": [
                 "-l",
                 "-c",
-                "conda activate djpyworkshop || (conda env create -f ./environment.yml -n djpyworkshop && conda activate djpyworkshop)"
+                "if [ ! -f ./setup-jupyter.sh ]; then echo 'Creating setup script...'; echo '#!/bin/bash\\nconda env create -f ./environment.yml -n djpyworkshop 2>/dev/null || echo \"Environment already exists\"\\nconda activate djpyworkshop\\npip install jupyter notebook ipykernel\\njupyter notebook --generate-config\\npython -m ipykernel install --user --name=djpyworkshop --display-name=\"Python (djpyworkshop)\"\\njupyter notebook &' > ./setup-jupyter.sh; chmod +x ./setup-jupyter.sh; fi; ./setup-jupyter.sh"
             ]
         }
     },
