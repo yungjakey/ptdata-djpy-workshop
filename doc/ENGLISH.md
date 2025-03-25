@@ -78,7 +78,7 @@ conda --version
 
 ## 🚀 Getting Started
 
-> **Note:** The command palette (Ctrl+Shift+P and terminal (Ctrl+Shift+Ö) are essential shortcuts you'll use throughout the workshop.
+> **Note:** The command palette (Ctrl+Shift+P) and terminal (Ctrl+Shift+Ö) are essential shortcuts you'll use throughout the workshop.
 
 To get started with this workshop, follow these steps with the accompanying screenshots:
 
@@ -124,7 +124,7 @@ If prompted for GitHub authentication:
 2. You should now see the project files in the Explorer
 
    ![Close Tabs](../assets/08_close-tabs.png)
-
+3. Run `jupyter lab` in the Terminal
 
 ## 🗂 Course Structure
 

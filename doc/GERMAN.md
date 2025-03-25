@@ -96,7 +96,7 @@ Bei Problemen:
 
 ## 🚀 Erste Schritte
 
-> **Bemerkung:** Die Befehlspalette (Strg+Umschalt+P und das Terminal (Strg+Umschalt+Ö) sind wichtige Kurzbefehle, die du während des Workshops verwenden wirst.
+> **Bemerkung:** Die Befehlspalette (Strg+Umschalt+P) und das Terminal (Strg+Umschalt+Ö) sind wichtige Kurzbefehle, die du während des Workshops verwenden wirst.
 
 Um mit diesem Workshop zu beginnen, folge diesen Schritten mit den beigefügten Screenshots:
 
@@ -142,6 +142,7 @@ Falls du zur GitHub-Authentifizierung aufgefordert wirst:
 2. Du solltest jetzt die Projektdateien im Explorer sehen
 
    ![Tabs schließen](../assets/08_close-tabs.png)
+3. Führe `jupyter lab` im Terminal aus
 
 ## 🗂 Kursstruktur
 
