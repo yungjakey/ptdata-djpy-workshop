@@ -19,7 +19,13 @@
                 "ms-azuretools.vscode-docker",
                 "yzhang.markdown-all-in-one",
                 "charliermarsh.ruff",
-                "mikestead.dotenv"
+                "mikestead.dotenv",
+                "eamodio.gitlens",
+                "mechatroner.rainbow-csv",
+                "eriklynd.json-tools",
+                "bierner.markdown-preview-github-styles",
+                "njpwerner.autodocstring",
+                "tamasfe.even-better-toml"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/opt/conda/envs/djpyworkshop/bin/python",
@@ -32,12 +38,24 @@
                 "python.analysis.diagnosticMode": "workspace",
                 "python.analysis.autoImportCompletions": true,
                 "python.envFile": "${workspaceFolder}/.config/fabric/.env",
-                // Ruff configuration (modern approach)
+                // Ruff configuration
+                "ruff.enable": true,
+                "ruff.configuration": "${workspaceFolder}/.config/ruff.toml",
+                "ruff.importStrategy": "fromEnvironment",
+                "ruff.organizeImports": true,
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
                     "editor.codeActionsOnSave": {
                         "source.fixAll": "explicit",
                         "source.organizeImports": "explicit"
+                    }
+                },
+                "[jupyter]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll.ruff": "explicit",
+                        "source.organizeImports.ruff": "explicit"
                     }
                 },
                 "editor.rulers": [
@@ -47,7 +65,7 @@
                 "files.trimTrailingWhitespace": true,
                 "files.insertFinalNewline": true,
                 "files.eol": "\n",
-                // Jupyter settings (updated)
+                // Jupyter settings
                 "jupyter.notebookFileRoot": "${workspaceFolder}",
                 "jupyter.askForKernelRestart": false,
                 "jupyter.interactiveWindow.creationMode": "perFile",
@@ -59,7 +77,8 @@
                 ],
                 "workbench.editorAssociations": {
                     "*.ipynb": "jupyter-notebook"
-                }
+                },
+                "notebook.formatOnSave.enabled": true
             }
         },
         "codespaces": {
@@ -76,9 +95,10 @@
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
     "forwardPorts": [
-        8888
+        8888,
+        8000
     ],
-    "postCreateCommand": "conda activate djpyworkshop && mv ~/.config/fabric/.env.example ~/.config/fabric/.env",
+    "postCreateCommand": "conda activate djpyworkshop",
     "remoteUser": "vscode",
     "hostRequirements": {
         "memory": "8gb"

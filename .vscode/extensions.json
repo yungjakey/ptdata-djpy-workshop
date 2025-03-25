@@ -1,18 +1,20 @@
 {
     "recommendations": [
+        "ms-vscode.git",
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-toolsai.jupyter",
         "ms-toolsai.jupyter-renderers",
         "ms-toolsai.jupyter-keymap",
         "ms-vscode.powershell",
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode-remote.remote-wsl",
         "github.copilot",
         "github.copilot-chat",
         "yzhang.markdown-all-in-one",
         "charliermarsh.ruff",
         "mechatroner.rainbow-csv",
         "eriklynd.json-tools",
-        "ms-vscode-remote.remote-containers"
     ],
     "unwantedRecommendations": []
 }

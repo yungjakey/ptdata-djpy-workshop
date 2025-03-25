@@ -7,10 +7,14 @@ RUN useradd -ms /bin/bash vscode
 # Add conda to PATH
 ENV PATH=/opt/conda/bin:$PATH
 
-# Install essentials
+# Install essentials and improve vscode.dev compatibility
 RUN apt-get update && apt-get install -y \
     curl \
     wget \
+    git \
+    openssh-client \
+    ca-certificates \
+    procps \
     && rm -rf /var/lib/apt/lists/*
 
 # Install fabric
@@ -27,8 +31,15 @@ COPY environment.yml /tmp/environment.yml
 RUN conda env create -f /tmp/environment.yml -n ${CONDA_ENV_NAME} \
     && conda clean -afy \
     && conda init bash \
-    && conda activate djpyworkshop \
-    && python -m spacy download de_core_news_lg
+    && echo "conda activate ${CONDA_ENV_NAME}" >> /etc/bash.bashrc \
+    && mkdir -p /opt/conda/envs/${CONDA_ENV_NAME}/etc/conda/activate.d \
+    && echo "export PYTHONPATH=/workspace:\$PYTHONPATH" > /opt/conda/envs/${CONDA_ENV_NAME}/etc/conda/activate.d/env_vars.sh \
+    && chmod +x /opt/conda/envs/${CONDA_ENV_NAME}/etc/conda/activate.d/env_vars.sh \
+    && conda activate djpyworkshop
+
+# Ensure directory structure for vscode.dev
+RUN mkdir -p /home/vscode/.vscode-server/extensions \
+    && chown -R vscode:vscode /home/vscode/.vscode-server
 
 # Create user
 USER vscode
@@ -39,3 +50,7 @@ RUN echo '. /opt/conda/etc/profile.d/conda.sh' >> ~/.bashrc \
     && echo 'conda activate ${CONDA_ENV_NAME}' >> ~/.bashrc
 
 COPY --chown=vscode:vscode . .
+
+# Expose ports for Jupyter and Django
+EXPOSE 8888
+EXPOSE 8000

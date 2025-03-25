@@ -96,6 +96,53 @@ Bei Problemen:
 
 ## 🚀 Erste Schritte
 
+> **Bemerkung:** Die Befehlspalette (Strg+Umschalt+P und das Terminal (Strg+Umschalt+Ö) sind wichtige Kurzbefehle, die du während des Workshops verwenden wirst.
+
+Um mit diesem Workshop zu beginnen, folge diesen Schritten mit den beigefügten Screenshots:
+
+### 1. Repository klonen
+
+1. Öffne einen Browser und navigiere zum Repository
+2. Klicke auf den "Code"-Button und kopiere die Repository-URL
+
+   ![Repository klonen](../assets/01_clone-repo.png)
+
+### 2. GitHub-Authentifizierung
+
+Falls du zur GitHub-Authentifizierung aufgefordert wirst:
+
+1. Melde dich bei deinem GitHub-Konto an oder erstelle ein neues, falls du keines hast
+
+   ![GitHub-Authentifizierung](../assets/02_github-auth.png)
+
+   ![Konto erstellen](../assets/03_github-account-creation.png)
+
+   ![Konto-Login](../assets/04_github-account-login.png)
+
+### 3. In VS Code öffnen
+
+1. Klicke auf "In VS Code öffnen", wenn du dazu aufgefordert wirst
+
+   ![In VS Code öffnen](../assets/05_open-in-vscode.png)
+
+2. Folge in VS Code den Anweisungen zum Klonen des Repositories
+
+   ![In VS Code klonen](../assets/06_clone-repo.png)
+
+### 4. Erweiterungen installieren
+
+1. VS Code wird dich auffordern, empfohlene Erweiterungen zu installieren
+2. Klicke auf "Installieren", um alle für diesen Workshop benötigten Erweiterungen zu erhalten
+
+   ![Erweiterungen installieren](../assets/07_install-extions.png)
+
+### 5. Arbeitsbereich einrichten
+
+1. Schließe alle Willkommens-Tabs oder unnötige Ansichten
+2. Du solltest jetzt die Projektdateien im Explorer sehen
+
+   ![Tabs schließen](../assets/08_close-tabs.png)
+
 ## 🗂 Kursstruktur
 
 ### 0. Spickzettel

@@ -20,7 +20,6 @@
     "ruff.organizeImports": true,
     // Python settings
     "python.languageServer": "Pylance",
-    "python.envFile": "${workspaceFolder}/.config/.fabric/.env",
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.autoImportCompletions": true,
@@ -60,12 +59,28 @@
             "args": [
                 "-NoExit",
                 "-Command",
-                "if (Get-Command conda -ErrorAction SilentlyContinue) { conda activate djpyworkshop; if ($LASTEXITCODE -ne 0) { Write-Host 'Creating conda environment...' -ForegroundColor Yellow; if (Test-Path ${workspaceFolder}/environment.yml) { conda env create -f ${workspaceFolder}/environment.yml } else { conda create -n djpyworkshop python=3.12 -y }; conda activate djpyworkshop } } else { Write-Host 'Conda not found. Please install Miniconda or Anaconda.' -ForegroundColor Red }"
+                "if (Get-Command conda -ErrorAction SilentlyContinue) { if (-not (conda env list | Select-String -Pattern '\\bdjpyworkshop\\b')) { Write-Host 'Creating conda environment...' -ForegroundColor Yellow; conda env create -f .\\environment.yml -n djpyworkshop }; conda activate djpyworkshop } else { Write-Host 'Conda not found. Please install Miniconda or Anaconda.' -ForegroundColor Red }"
+            ]
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "zsh": {
+            "path": "zsh",
+            "args": [
+                "-l"
+            ]
+        },
+        "conda-djpy": {
+            "path": "zsh",
+            "args": [
+                "-l",
+                "-c",
+                "if command -v conda >/dev/null 2>&1; then if ! conda env list | grep -q \"djpyworkshop\"; then echo \"Creating conda environment...\"; conda env create -f ./environment.yml -n djpyworkshop; fi; conda activate djpyworkshop; else echo \"Conda not found. Please install Miniconda or Anaconda.\"; fi"
             ]
         }
     },
     "terminal.integrated.defaultProfile.windows": "conda-djpy",
-    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.defaultProfile.osx": "conda-djpy",
     // Workspace actions
     "workbench.startupEditor": "welcomePage",
     "workbench.editorAssociations": {

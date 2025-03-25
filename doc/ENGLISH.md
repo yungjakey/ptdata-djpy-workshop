@@ -14,6 +14,9 @@ Don't worry if you don't have these installed yet—follow the step-by-step inst
 
 ## 🔧 Installation Guide for Windows
 
+If you are working on managed Citrix machines, you can (hopefully) skip these steps.
+In case you encounter any issues during install, please refer to the section below to troubleshoot your issue.
+
 ### 1. Install Visual Studio Code
 
 1. Download from [code.visualstudio.com](https://code.visualstudio.com/)
@@ -73,28 +76,55 @@ python --version # 3.12.x
 conda --version
 ```
 
-### ℹ️ Troubleshooting
-
-If you encounter issues:
-1. **Conda environment not activating:**
-- Run VSCode as Administrator
-- Execute: `Set-ExecutionPolicy RemoteSigned`
-- Try activating again: `conda activate djpyworkshop`
-2. **Python packages not found:**
-- Ensure you've activated the conda environment
-3. **Jupyter notebooks not opening:**
-- Select a Kernel when opening a notebook (use the "djpyworkshop" conda environment kernel)
-- Make sure the Python extension in VS Code is installed
-- Restart VS Code after installing extensions
-4. **Executable not found**:
-- This usually means the program isn't in your PATH environment variable
-- Check your PATH by opening PowerShell and running: `$env:Path -split ";"`
-- You may need to add the relevant directory to your PATH:
-  - Search for "Edit environment variables" in Windows
-  - Edit the PATH variable and add the missing directory
-  - Restart PowerShell/VS Code after making changes
-
 ## 🚀 Getting Started
+
+> **Note:** The command palette (Ctrl+Shift+P and terminal (Ctrl+Shift+Ö) are essential shortcuts you'll use throughout the workshop.
+
+To get started with this workshop, follow these steps with the accompanying screenshots:
+
+### 1. Clone the Repository
+
+1. Open a browser and navigate to the repository
+2. Click on the "Code" button and copy the repository URL
+
+   ![Clone Repository](../assets/01_clone-repo.png)
+
+### 2. GitHub Authentication
+
+If prompted for GitHub authentication:
+
+1. Sign in to your GitHub account or create one if you don't have it
+
+   ![GitHub Authentication](../assets/02_github-auth.png)
+
+   ![Create Account](../assets/03_github-account-creation.png)
+
+   ![Account Login](../assets/04_github-account-login.png)
+
+### 3. Open in VS Code
+
+1. Click on "Open in VS Code" when prompted
+
+   ![Open in VS Code](../assets/05_open-in-vscode.png)
+
+2. In VS Code, follow the prompts to clone the repository
+
+   ![Clone in VS Code](../assets/06_clone-repo.png)
+
+### 4. Install Extensions
+
+1. VS Code will prompt you to install recommended extensions
+2. Click "Install" to get all the extensions needed for this workshop
+
+   ![Install Extensions](../assets/07_install-extions.png)
+
+### 5. Setup Your Workspace
+
+1. Close any welcome tabs or unnecessary views
+2. You should now see the project files in the Explorer
+
+   ![Close Tabs](../assets/08_close-tabs.png)
+
 
 ## 🗂 Course Structure
 
@@ -122,6 +152,29 @@ Learn techniques for extracting and analyzing text from PDF documents:
 
 [PDF Analysis Notebook](../notebooks/02_pdf-analysis.ipynb)
 
+
+## ℹ️ Troubleshooting
+
+If you encounter issues:
+1. **Conda environment not activating:**
+- Run VSCode as Administrator
+- Execute: `Set-ExecutionPolicy RemoteSigned`
+- Try activating again: `conda activate djpyworkshop`
+2. **Python packages not found:**
+- Ensure you've activated the conda environment
+3. **Jupyter notebooks not opening:**
+- Select a Kernel when opening a notebook (use the "djpyworkshop" conda environment kernel)
+- Make sure the Python extension in VS Code is installed
+- Restart VS Code after installing extensions
+4. **Executable not found**:
+- This usually means the program isn't in your PATH environment variable
+- Check your PATH by opening PowerShell and running: `$env:Path -split ";"`
+- You may need to add the relevant directory to your PATH:
+  - Search for "Edit environment variables" in Windows
+  - Edit the PATH variable and add the missing directory
+  - Restart PowerShell/VS Code after making changes
+
+
 ## ℹ️ Details
 ### VS Code Settings (.vscode folder)
 This project includes customized VS Code settings to enhance your development experience:
@@ -138,6 +191,27 @@ This project includes customized VS Code settings to enhance your development ex
   - Markdown editing support
 
 To use these settings, simply open the project in VS Code, and you'll be prompted to install recommended extensions.
+
+### ℹ️ Troubleshooting
+
+If you encounter issues:
+1. **Conda environment not activating:**
+- Run VSCode as Administrator
+- Execute: `Set-ExecutionPolicy RemoteSigned`
+- Try activating again: `conda activate djpyworkshop`
+2. **Python packages not found:**
+- Ensure you've activated the conda environment
+3. **Jupyter notebooks not opening:**
+- Select a Kernel when opening a notebook (use the "djpyworkshop" conda environment kernel)
+- Make sure the Python extension in VS Code is installed
+- Restart VS Code after installing extensions
+4. **Executable not found**:
+- This usually means the program isn't in your PATH environment variable
+- Check your PATH by opening PowerShell and running: `$env:Path -split ";"`
+- You may need to add the relevant directory to your PATH:
+  - Search for "Edit environment variables" in Windows
+  - Edit the PATH variable and add the missing directory
+  - Restart PowerShell/VS Code after making changes
 
 ### 🔄 Development Container (NOT IMPLEMENTED YET)
 This project includes a Development Container configuration for consistent development environments across machines:
