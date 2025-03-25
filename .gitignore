@@ -180,4 +180,4 @@ tmp/**
 !tmp/gitkeep
 
 data/misc/*
-!data/misc/gitkeep
+!data/misc/.gitkeep
