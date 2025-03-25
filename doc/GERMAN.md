@@ -142,7 +142,20 @@ Falls du zur GitHub-Authentifizierung aufgefordert wirst:
 2. Du solltest jetzt die Projektdateien im Explorer sehen
 
    ![Tabs schließen](../assets/08_close-tabs.png)
-3. Führe `jupyter lab` im Terminal aus
+
+### 6. Jupyter-Server starten
+
+Führe das Setup-Skript manuell aus, um den Jupyter-Server zu starten:
+
+**Windows (in PowerShell):**
+```bash
+.\scripts\setup-jupyter.ps1
+```
+
+
+Dieses Skript richtet die Conda-Umgebung ein und installiert alle benötigten Pakete.
+
+1. Führe `jupyter lab` im Terminal aus
 
 ## 🗂 Kursstruktur
 

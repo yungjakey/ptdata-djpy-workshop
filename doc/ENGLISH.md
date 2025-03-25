@@ -124,7 +124,20 @@ If prompted for GitHub authentication:
 2. You should now see the project files in the Explorer
 
    ![Close Tabs](../assets/08_close-tabs.png)
-3. Run `jupyter lab` in the Terminal
+
+### 6. Jupyer Server
+
+Run the setup script manually to configure the Jupyter server:
+
+**Windows (in PowerShell):**
+```bash
+.\scripts\setup-jupyter.ps1
+```
+
+
+This script will set up the conda environment and install all required packages.
+
+1. Run `jupyter lab` in the Terminal
 
 ## 🗂 Course Structure
 

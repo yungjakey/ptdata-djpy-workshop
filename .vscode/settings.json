@@ -61,12 +61,7 @@
         },
         "conda-djpy": {
             "source": "PowerShell",
-            "icon": "terminal-powershell",
-            "args": [
-                "-NoExit",
-                "-Command",
-                "& .\\scripts\\setup-jupyter.ps1"
-            ]
+            "icon": "terminal-powershell"
         }
     },
     "terminal.integrated.profiles.osx": {
@@ -77,12 +72,7 @@
             ]
         },
         "conda-djpy": {
-            "path": "zsh",
-            "args": [
-                "-l",
-                "-c",
-                "./scripts/setup-jupyter.sh"
-            ]
+            "path": "zsh"
         }
     },
     "terminal.integrated.defaultProfile.windows": "conda-djpy",
