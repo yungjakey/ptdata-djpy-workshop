@@ -10,16 +10,14 @@ dependencies:
   - matplotlib>=3.7.0
   - seaborn>=0.12.0
   - plotly>=5.18.0
+  - scikit-learn>=1.6.1
   # Jupyter environment
   - jupyterlab>=4.0.7
   - notebook>=7.0.6
   - ipykernel>=6.25.0
   - nb_conda_kernels
   - ipywidgets>=8.1.0
-  - pdfplumber>=0.11.5
   - spacy>=3.8.2
-  - spacy-layout>=0.3.9
   - wordcloud>=1.9.4
-  - scikit-learn>=1.6.1
   # Development tools - just Ruff (no isort)
   - ruff>=0.1.11

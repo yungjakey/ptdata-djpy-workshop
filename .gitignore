@@ -174,15 +174,10 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
-
-external/**
-!external/.gitkeep
+**/.DS_Store
+tmp/**
+!tmp/.gitkeep
 ktem_app_data/*
 !ktem_app_data/.gitkeep
 
-notebooks/*.csv
-notebooks/*.json
-notebooks/*.txt
-notebooks/*.png
-notebooks/*.jpg
 data/misc/*

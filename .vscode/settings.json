@@ -24,6 +24,9 @@
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.autoImportCompletions": true,
+    "python.terminal.activateEnvironment": true,
+    "python.defaultInterpreterPath": "python",
+    "python.condaPath": "conda",
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.codeActionsOnSave": {
@@ -31,8 +34,7 @@
             "source.organizeImports": "explicit"
         }
     },
-    // "python.defaultInterpreterPath": "${env:USERPROFILE}\\AppData\\Local\\Continuum\\anaconda3\\envs\\djpyworkshop\\python.exe",
-    // Jupyter settings (updated)
+    // Jupyter settings
     "notebook.formatOnSave.enabled": true,
     "[jupyter]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
@@ -43,7 +45,7 @@
         }
     },
     "jupyter.askForKernelRestart": false,
-    "jupyter.interactiveWindow.creationMode": "perFile", // Modern setting
+    "jupyter.interactiveWindow.creationMode": "perFile",
     "jupyter.notebookFileRoot": "${workspaceFolder}",
     // Terminal settings
     "terminal.integrated.gpuAcceleration": "auto",
@@ -58,10 +60,25 @@
             "args": [
                 "-NoExit",
                 "-Command",
-                "conda activate djpyworkshop"
+                "if (Get-Command conda -ErrorAction SilentlyContinue) { conda activate djpyworkshop; if ($LASTEXITCODE -ne 0) { Write-Host 'Creating conda environment...' -ForegroundColor Yellow; if (Test-Path ${workspaceFolder}/environment.yml) { conda env create -f ${workspaceFolder}/environment.yml } else { conda create -n djpyworkshop python=3.12 -y }; conda activate djpyworkshop } } else { Write-Host 'Conda not found. Please install Miniconda or Anaconda.' -ForegroundColor Red }"
             ]
         }
     },
     "terminal.integrated.defaultProfile.windows": "conda-djpy",
-    "terminal.integrated.defaultProfile.osx": "zsh"
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    // Workspace actions
+    "workbench.startupEditor": "welcomePage",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "explorer.autoReveal": true,
+    // JSON settings
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true
+    }
 }
