@@ -46,6 +46,7 @@
     "jupyter.askForKernelRestart": false,
     "jupyter.interactiveWindow.creationMode": "perFile",
     "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "jupyter.defaultKernelName": "djpyworkshop",
     // Terminal settings
     "terminal.integrated.gpuAcceleration": "auto",
     "terminal.integrated.profiles.windows": {
@@ -59,7 +60,7 @@
             "args": [
                 "-NoExit",
                 "-Command",
-                "if (Get-Command conda -ErrorAction SilentlyContinue) { if (-not (conda env list | Select-String -Pattern '\\bdjpyworkshop\\b')) { Write-Host 'Creating conda environment...' -ForegroundColor Yellow; conda env create -f .\\environment.yml -n djpyworkshop }; conda activate djpyworkshop } else { Write-Host 'Conda not found. Please install Miniconda or Anaconda.' -ForegroundColor Red }"
+                "conda activate djpyworkshop || conda env create -f .\\environment.yml -n djpyworkshop && conda activate djpyworkshop"
             ]
         }
     },
@@ -75,7 +76,7 @@
             "args": [
                 "-l",
                 "-c",
-                "if command -v conda >/dev/null 2>&1; then if ! conda env list | grep -q \"djpyworkshop\"; then echo \"Creating conda environment...\"; conda env create -f ./environment.yml -n djpyworkshop; fi; conda activate djpyworkshop; else echo \"Conda not found. Please install Miniconda or Anaconda.\"; fi"
+                "conda activate djpyworkshop || (conda env create -f ./environment.yml -n djpyworkshop && conda activate djpyworkshop)"
             ]
         }
     },
