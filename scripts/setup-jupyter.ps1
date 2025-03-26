@@ -3,7 +3,7 @@ conda env create -f ..\environment.yml -n djpyworkshop 2>$null
 conda activate djpyworkshop
 
 # Install jupyter components
-pip install jupyter notebook ipykernel jupyterlab
+pip install jupyter notebook ipykernel jupyterlab pdfplumber google-generativeai
 
 # Check if config exists, only generate if not
 $ConfigFile = "$env:USERPROFILE\.jupyter\jupyter_notebook_config.py"

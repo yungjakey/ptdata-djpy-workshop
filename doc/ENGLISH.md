@@ -172,6 +172,13 @@ Learn techniques for extracting and analyzing text from PDF documents:
 
 [PDF Analysis Notebook](../notebooks/02_pdf-analysis.ipynb)
 
+### 3. AI tools
+Learn tools to work with generative AI
+
+- Webscraping via Jina
+- Programmatically interacting with Gemini Chatbot
+
+[AI tool Notebook](../notebooks/03_ai-tools.ipynb)
 
 ## ℹ️ Troubleshooting
 

@@ -190,6 +190,14 @@ Lerne Techniken zur Extraktion und Analyse von Text aus PDF-Dokumenten:
 
 [PDF-Analyse Notebook](../notebooks/02_pdf-analysis.ipynb)
 
+### 3. KI-Tools
+Lerne Werzeuge um mit generativer KI zu arbeiten
+
+- Webpage-Extraktionsmethoden via Jina
+- Programmatische Interaktion mit Gemini Chatbot
+
+[KI-Tool Notebook](../notebooks/03_ai-tools.ipynb)
+
 ## ℹ️ Details
 ### VS Code Einstellungen (.vscode Ordner)
 Dieses Projekt enthält angepasste VS Code-Einstellungen zur Verbesserung deiner Entwicklungserfahrung:
