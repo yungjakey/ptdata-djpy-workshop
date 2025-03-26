@@ -125,7 +125,7 @@ If prompted for GitHub authentication:
 
    ![Close Tabs](../assets/08_close-tabs.png)
 
-### 6. Jupyer Server
+### 6. Configure Jupyer Server
 
 Run the setup script manually to configure the Jupyter server:
 
@@ -134,10 +134,17 @@ Run the setup script manually to configure the Jupyter server:
 .\scripts\setup-jupyter.ps1
 ```
 
+### 7. Start Jupyer Server
 
 This script will set up the conda environment and install all required packages.
 
 1. Run `jupyter lab` in the Terminal
+
+   ![Starting Jupyter Server](../assets/09_start-jupyter.png)
+
+2. The Jupyter Lab server will start and open in your default browser
+
+   ![Jupyter Lab Welcome Screen](../assets/10_welcome-jupyter.png)
 
 ## 🗂 Course Structure
 

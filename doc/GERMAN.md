@@ -143,19 +143,26 @@ Falls du zur GitHub-Authentifizierung aufgefordert wirst:
 
    ![Tabs schließen](../assets/08_close-tabs.png)
 
-### 6. Jupyter-Server starten
+### 6. Jupyter-Server konfigurieren
 
-Führe das Setup-Skript manuell aus, um den Jupyter-Server zu starten:
+Führe das Setup-Skript manuell aus, um den Jupyter-Server zu konfigurieren:
 
 **Windows (in PowerShell):**
 ```bash
 .\scripts\setup-jupyter.ps1
 ```
 
-
 Dieses Skript richtet die Conda-Umgebung ein und installiert alle benötigten Pakete.
 
+### 7. Jupyter-Server starten
+
 1. Führe `jupyter lab` im Terminal aus
+
+   ![Jupyter Server starten](../assets/09_start-jupyter.png)
+
+2. Der Jupyter Lab Server wird gestartet und öffnet sich in deinem Standardbrowser
+
+   ![Jupyter Lab Willkommensbildschirm](../assets/10_welcome-jupyter.png)
 
 ## 🗂 Kursstruktur
 
