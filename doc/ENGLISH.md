@@ -12,10 +12,12 @@ Before starting, you'll need to install:
 
 Don't worry if you don't have these installed yet—follow the step-by-step instructions below.
 
-## 🔧 Installation Guide for Windows
+> **Note:** If you run into any issues in the `Prerequisits` or `Getting Started` sections, please refer to below `Troubleshooting` guide.
+
+## 🔧 Prerequisits
 
 If you are working on managed Citrix machines, you can (hopefully) skip these steps.
-In case you encounter any issues during install, please refer to the section below to troubleshoot your issue.
+In case you encounter any issues during install, please refer to the section below to +shoot your issue.
 
 ### 1. Install Visual Studio Code
 
@@ -34,7 +36,9 @@ In case you encounter any issues during install, please refer to the section bel
  $PSVersionTable.PSVersion # 7.x
 ```
 
-### 3. Install Git
+> **Note:** The following steps are optional, since these are included in the setup scripts (found [here for Windows](../scripts/setup.ps1) and [here for Linux/macOS](../scripts/setup.sh)). You only need to perform these if you run into any issues during installation with the script.
+
+### [OPTIONAL] 3. Install Git
 
 1. Download from [Git for Windows](https://git-scm.com/download/win)
 2. Run the installer with default options
@@ -44,7 +48,7 @@ In case you encounter any issues during install, please refer to the section bel
 git --version
 ```
 
-### 4. Install Python 3.12
+### [OPTIONAL] 4. Install Python 3.12
 
 1. Go to the [Python Downloads page](https://www.python.org/downloads/)
 2. Download the latest Python 3.12.x Windows installer (64-bit)
@@ -58,7 +62,7 @@ git --version
 python --version # 3.12.x
 ```
 
-### 5. Install Miniconda
+### [OPTIONAL] 5. Install Miniconda
 
 1. Go to the [Miniconda download page](https://docs.conda.io/en/latest/miniconda.html)
 2. Download the latest Windows 64-bit installer for Python 3.9+
@@ -77,7 +81,6 @@ conda --version
 ```
 
 ## 🚀 Getting Started
-
 > **Note:** The command palette (Ctrl+Shift+P) and terminal (Ctrl+Shift+Ö) are essential shortcuts you'll use throughout the workshop.
 
 To get started with this workshop, follow these steps with the accompanying screenshots:
@@ -104,35 +107,45 @@ If prompted for GitHub authentication:
 ### 3. Open in VS Code
 
 1. Click on "Open in VS Code" when prompted
-
    ![Open in VS Code](../assets/05_open-in-vscode.png)
-
 2. In VS Code, follow the prompts to clone the repository
-
    ![Clone in VS Code](../assets/06_clone-repo.png)
+3. You should now see the project files in the Explorer and can close any welcome tabs or unnecessary views by opening the command pallette (`Ctrl+Shift+P`) and typing `Close All Editors`
+   ![Close Tabs](../assets/07_close-tabs.png)
 
 ### 4. Install Extensions
+> **Note**: Skip this step, if you see any error messages like the one shown in the bottom right of the last image, e.g. stating something like `Extension host has quit unexpectedly` .
 
 1. VS Code will prompt you to install recommended extensions
 2. Click "Install" to get all the extensions needed for this workshop
-
-   ![Install Extensions](../assets/07_install-extions.png)
+   ![Install Extensions](../assets/08_install-extensions.png)
 
 ### 5. Setup Your Workspace
+> **Note**: Skip this step if you have manually installed git, python and conda.
 
-1. Close any welcome tabs or unnecessary views
-2. You should now see the project files in the Explorer
+1. Open the terminal (`Ctrl+Shift+Ö`) and run the automated setup
+   - Windows
+   ```bash
+   .\scripts\setup.ps1
+   ```
 
-   ![Close Tabs](../assets/08_close-tabs.png)
+   - macOS/Linux (in Terminal):
+   ```bash
+   ./scripts/setup.sh
+   ```
 
-### 6. Configure Jupyer Server
+### 6. Configure Jupyter Server
 
-Run the setup script manually to configure the Jupyter server:
+1. Open the terminal (`Ctrl+Shift+Ö`) and run the automated configuration
+   - Windows
+   ```bash
+   .\scripts\configure-jupyter.ps1
+   ```
 
-**Windows (in PowerShell):**
-```bash
-.\scripts\setup-jupyter.ps1
-```
+   - macOS/Linux (in Terminal):
+   ```bash
+   ./scripts/configure-jupyter.sh
+   ```
 
 ### 7. Start Jupyer Server
 
@@ -145,6 +158,45 @@ This script will set up the conda environment and install all required packages.
 2. The Jupyter Lab server will start and open in your default browser
 
    ![Jupyter Lab Welcome Screen](../assets/10_welcome-jupyter.png)
+
+## ℹ️ Troubleshooting
+
+If you encounter issues:
+1. **Executable not found**:
+   This usually means the program isn't in your PATH environment variable
+   1. Check your PATH by opening PowerShell and running: `$env:Path -split ";"`. If You cant find it the relevant executables in the corresponding directories, you may need to add the relevant directory to your PATH:
+     - Search for "Edit environment variables" in Windows
+     - Edit the PATH variable and add the missing directory
+     - Restart PowerShell/VS Code after making changes
+   2. If this still does not work try to explicitly **prepend** the installation path to all relevant executables:
+     - Python:
+       - Windows: `%USERPROFILE%\AppData\Local\Programs\Python\Python312\python.exe --version`
+       - Linux/macOS: `$HOME/.local/bin/python3 --version` or `$HOME/Library/Python/3.12/bin/python3 --version`
+     - Conda
+       - Miniconda:
+         - activate:
+           - Windows: `%USERPROFILE%\Miniconda3\Scripts\activate.bat djpyworkshop`
+           - Linux/macOS: `$HOME/miniconda3/bin/activate djpyworkshop`
+         - conda:
+           - Windows: `%USERPROFILE%\Miniconda3\Scripts\conda.exe env list`
+           - Linux/macOS: `$HOME/miniconda3/bin/conda env list`
+     - Anaconda:
+       - Windows: `%USERPROFILE%\Anaconda3\Scripts\activate.bat djpyworkshop`
+       - Linux/macOS: `$HOME/anaconda3/bin/activate djpyworkshop`
+     - Git:
+       - Windows: `%PROGRAMFILES%\Git\cmd\git.exe --version`
+       - Linux/macOS: `$HOME/.local/bin/git --version` or `/usr/bin/git --version`
+2. **Conda environment not activating:**
+   - Run VSCode as Administrator
+   - Execute: `Set-ExecutionPolicy RemoteSigned`
+   - Try activating again: `conda activate djpyworkshop`
+3. **Python packages not found:**
+   - Ensure you've activated the conda environment
+4. **Jupyter notebooks not opening:**
+   - Select a Kernel when opening a notebook (use the "djpyworkshop" conda environment kernel)
+   - Make sure the Python extension in VS Code is installed
+   - Restart VS Code after installing extensions
+
 
 ## 🗂 Course Structure
 
@@ -180,27 +232,6 @@ Learn tools to work with generative AI
 
 [AI tool Notebook](../notebooks/03_ai-tools.ipynb)
 
-## ℹ️ Troubleshooting
-
-If you encounter issues:
-1. **Conda environment not activating:**
-- Run VSCode as Administrator
-- Execute: `Set-ExecutionPolicy RemoteSigned`
-- Try activating again: `conda activate djpyworkshop`
-2. **Python packages not found:**
-- Ensure you've activated the conda environment
-3. **Jupyter notebooks not opening:**
-- Select a Kernel when opening a notebook (use the "djpyworkshop" conda environment kernel)
-- Make sure the Python extension in VS Code is installed
-- Restart VS Code after installing extensions
-4. **Executable not found**:
-- This usually means the program isn't in your PATH environment variable
-- Check your PATH by opening PowerShell and running: `$env:Path -split ";"`
-- You may need to add the relevant directory to your PATH:
-  - Search for "Edit environment variables" in Windows
-  - Edit the PATH variable and add the missing directory
-  - Restart PowerShell/VS Code after making changes
-
 
 ## ℹ️ Details
 ### VS Code Settings (.vscode folder)
@@ -218,27 +249,6 @@ This project includes customized VS Code settings to enhance your development ex
   - Markdown editing support
 
 To use these settings, simply open the project in VS Code, and you'll be prompted to install recommended extensions.
-
-### ℹ️ Troubleshooting
-
-If you encounter issues:
-1. **Conda environment not activating:**
-- Run VSCode as Administrator
-- Execute: `Set-ExecutionPolicy RemoteSigned`
-- Try activating again: `conda activate djpyworkshop`
-2. **Python packages not found:**
-- Ensure you've activated the conda environment
-3. **Jupyter notebooks not opening:**
-- Select a Kernel when opening a notebook (use the "djpyworkshop" conda environment kernel)
-- Make sure the Python extension in VS Code is installed
-- Restart VS Code after installing extensions
-4. **Executable not found**:
-- This usually means the program isn't in your PATH environment variable
-- Check your PATH by opening PowerShell and running: `$env:Path -split ";"`
-- You may need to add the relevant directory to your PATH:
-  - Search for "Edit environment variables" in Windows
-  - Edit the PATH variable and add the missing directory
-  - Restart PowerShell/VS Code after making changes
 
 ### 🔄 Development Container (NOT IMPLEMENTED YET)
 This project includes a Development Container configuration for consistent development environments across machines:
